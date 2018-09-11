@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.function.Consumer;
 
 @Service
@@ -30,6 +31,10 @@ public class QuestionService {
 
     public Question createQuestion(Question question){
          return questionRepository.save(question);
+    }
+
+    public Optional<Question> getQuestion(String questionId){
+        return questionRepository.findById(Integer.parseInt(questionId));
     }
 
 }
