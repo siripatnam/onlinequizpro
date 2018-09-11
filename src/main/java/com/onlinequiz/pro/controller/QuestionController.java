@@ -3,12 +3,10 @@ package com.onlinequiz.pro.controller;
 import com.onlinequiz.pro.models.Question;
 import com.onlinequiz.pro.services.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class QuestionController {
@@ -25,5 +23,10 @@ public class QuestionController {
     @RequestMapping(value = "/questions")
     public Question createQuestion(@RequestBody Question question){
         return questionService.createQuestion(question);
+    }
+
+    @RequestMapping(value = "/getquestion")
+    public Optional<Question> getQuestion(@RequestParam String questionId){
+        return questionService.getQuestion(questionId);
     }
 }
