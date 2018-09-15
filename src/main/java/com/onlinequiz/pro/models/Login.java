@@ -1,25 +1,36 @@
 package com.onlinequiz.pro.models;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "register")
 public class Login {
-    String userName, password;
+    @Id
+    @Column(name = "id")
+    int studentId;
+
+    @Column(name = "password")
+    String password;
 
 
     public Login() {
 
     }
 
-
-    public Login(String userName, String password) {
-        this.userName = userName;
+    public Login(int studentId, String password) {
+        this.studentId = studentId;
         this.password = password;
     }
 
-    public String getUserName() {
-        return userName;
+    public int getStudentId() {
+        return studentId;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setStudentId(int studentId) {
+        this.studentId = studentId;
     }
 
     public String getPassword() {

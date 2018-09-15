@@ -1,27 +1,38 @@
 package com.onlinequiz.pro.models;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
+@Table(name = "question")
 public class Question {
     @Id
+    @GeneratedValue
     @Column(name = "questionid")
-    int questionId;
+    private int questionId;
 
     @Column(name = "question")
-    String question;
+    private String question;
+
+    @Column(name = "optiona")
+    private String optionA;
+
+    @Column(name = "optionb")
+    private String optionB;
+
+    @Column(name = "optionc")
+    private String optionC;
 
     @Column(name = "answer")
-    String answer;
+    private String answer;
 
     public Question() {
     }
 
-    public Question(int questionId, String question, String answer) {
-        this.questionId = questionId;
+    public Question(String question, String optionA, String optionB, String optionC, String answer) {
         this.question = question;
+        this.optionA = optionA;
+        this.optionB = optionB;
+        this.optionC = optionC;
         this.answer = answer;
     }
 
@@ -39,6 +50,30 @@ public class Question {
 
     public void setQuestion(String question) {
         this.question = question;
+    }
+
+    public String getOptionA() {
+        return optionA;
+    }
+
+    public void setOptionA(String optionA) {
+        this.optionA = optionA;
+    }
+
+    public String getOptionB() {
+        return optionB;
+    }
+
+    public void setOptionB(String optionB) {
+        this.optionB = optionB;
+    }
+
+    public String getOptionC() {
+        return optionC;
+    }
+
+    public void setOptionC(String optionC) {
+        this.optionC = optionC;
     }
 
     public String getAnswer() {
