@@ -14,7 +14,7 @@ public class QuestionService {
     @Autowired
     QuestionRepository questionRepository;
 
-    public List<Question> getQuestions(Question question){
+    public List<Question> getQuestions(){
 
         List<Question> questionList  = new ArrayList<>();
         questionRepository.findAll().forEach(new Consumer<Question>() {
@@ -23,6 +23,7 @@ public class QuestionService {
                 questionList.add(question);
             }
         });
+        System.out.println(questionList.size());
         return questionList;
     }
 
@@ -32,6 +33,10 @@ public class QuestionService {
 
     public Optional<Question> getQuestion(String questionId){
         return questionRepository.findById(Integer.parseInt(questionId));
+    }
+    public int deleteQuestion(int questionId) {
+        questionRepository.deleteById((questionId));
+        return questionId;
     }
 
 }
