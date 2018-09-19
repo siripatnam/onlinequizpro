@@ -1,13 +1,11 @@
 package com.onlinequiz.pro.services;
-
-
 import com.onlinequiz.pro.models.Question;
 import com.onlinequiz.pro.repositories.QuestionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.function.Consumer;
 
 @Service
@@ -16,7 +14,7 @@ public class QuestionService {
     @Autowired
     QuestionRepository questionRepository;
 
-    public List<Question> getQuestions(Question question){
+    public List<Question> getQuestions(){
 
         List<Question> questionList  = new ArrayList<>();
         questionRepository.findAll().forEach(new Consumer<Question>() {
@@ -25,11 +23,20 @@ public class QuestionService {
                 questionList.add(question);
             }
         });
+        System.out.println(questionList.size());
         return questionList;
     }
 
     public Question createQuestion(Question question){
          return questionRepository.save(question);
+    }
+
+    public Optional<Question> getQuestion(String questionId){
+        return questionRepository.findById(Integer.parseInt(questionId));
+    }
+    public int deleteQuestion(int questionId) {
+        questionRepository.deleteById((questionId));
+        return questionId;
     }
 
 }
